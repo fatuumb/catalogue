@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DataVisionTech – Catalogue de Formations & Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-deep: #1a3a6b;
+    --blue-mid: #2756a8;
+    --blue-light: #4a90d9;
+    --blue-pale: #dbeafe;
+    --accent: #f59e0b;
+    --white: #ffffff;
+    --off-white: #f8faff;
+    --text: #0f1e3d;
+    --muted: #6b7a99;
+    --card-bg: #ffffff;
+    --border: rgba(39, 86, 168, 0.12);
+    --shadow: 0 8px 40px rgba(26, 58, 107, 0.12);
+    --radius: 16px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+  }
+
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo img { height: 42px; width: 42px; border-radius: 50%; object-fit: cover; }
+  .nav-logo-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--blue-deep); line-height: 1.1; }
+  .nav-logo-sub { font-size: 0.6rem; font-weight: 400; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--text); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--blue-mid); }
+
+  .nav-cta {
+    background: var(--blue-mid); color: #fff;
+    padding: 10px 22px; border-radius: 50px;
+    font-size: 0.85rem; font-weight: 600; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--blue-deep); transform: translateY(-1px); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--blue-deep); border-radius: 2px; transition: 0.3s; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 88vh;
+    background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-mid) 55%, #1e6bb8 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 80px 5% 60px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+  }
+
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    animation: blob-float 8s ease-in-out infinite;
+  }
+  .hero-blob:nth-child(1) { width: 400px; height: 400px; top: -100px; right: -80px; animation-delay: 0s; }
+  .hero-blob:nth-child(2) { width: 250px; height: 250px; bottom: -60px; left: 10%; animation-delay: 3s; }
+  .hero-blob:nth-child(3) { width: 150px; height: 150px; top: 30%; right: 25%; animation-delay: 5s; }
+
+  @keyframes blob-float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.04); }
+  }
+
+  .hero-content { position: relative; z-index: 2; text-align: center; max-width: 780px; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50px; padding: 6px 18px; margin-bottom: 28px;
+    color: #fff; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em;
+    animation: fade-up 0.6s ease both;
+  }
+  .hero-badge::before { content: '●'; color: var(--accent); font-size: 0.6rem; }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 5.5vw, 4rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    animation: fade-up 0.7s 0.1s ease both;
+  }
+
+  .hero h1 span { color: var(--accent); }
+
+  .hero p {
+    color: rgba(255,255,255,0.8);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    max-width: 580px; margin: 0 auto 36px;
+    line-height: 1.7;
+    animation: fade-up 0.7s 0.2s ease both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    animation: fade-up 0.7s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--accent); color: var(--blue-deep);
+    padding: 14px 32px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(245,158,11,0.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,158,11,0.45); }
+
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.5); color: #fff;
+    padding: 13px 32px; border-radius: 50px;
+    font-weight: 600; font-size: 0.95rem; text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+  .hero-stats {
+    display: flex; gap: 40px; justify-content: center; margin-top: 60px;
+    flex-wrap: wrap; animation: fade-up 0.7s 0.4s ease both;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: #fff; }
+  .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 90px 5%; }
+
+  .section-label {
+    display: inline-block;
+    background: var(--blue-pale); color: var(--blue-mid);
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; padding: 5px 14px; border-radius: 50px;
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800; color: var(--blue-deep);
+    margin-bottom: 14px; line-height: 1.2;
+  }
+
+  .section-sub {
+    color: var(--muted); font-size: 1rem; max-width: 560px;
+    line-height: 1.7;
+  }
+
+  .section-header { margin-bottom: 56px; }
+  .section-header.center { text-align: center; }
+  .section-header.center .section-sub { margin: 0 auto; }
+
+  /* ── FORMATIONS ── */
+  #formations { background: var(--white); }
+
+  .tabs {
+    display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 44px;
+  }
+
+  .tab-btn {
+    padding: 9px 22px; border-radius: 50px;
+    border: 1.5px solid var(--border);
+    background: transparent; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 500; color: var(--muted);
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { border-color: var(--blue-mid); color: var(--blue-mid); }
+  .tab-btn.active { background: var(--blue-mid); color: #fff; border-color: var(--blue-mid); }
+
+  .formations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue-mid), var(--blue-light));
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(26,58,107,0.15); }
+  .card:hover::before { opacity: 1; }
+
+  .card-icon {
+    width: 52px; height: 52px; border-radius: 12px;
+    background: var(--blue-pale); display: flex; align-items: center;
+    justify-content: center; font-size: 1.5rem; margin-bottom: 18px;
+  }
+
+  .card-level {
+    display: inline-block; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 50px; margin-bottom: 10px;
+  }
+  .level-debutant { background: #dcfce7; color: #166534; }
+  .level-intermediaire { background: #fef9c3; color: #854d0e; }
+  .level-avance { background: #fee2e2; color: #991b1b; }
+  .level-expert { background: #f3e8ff; color: #6b21a8; }
+
+  .card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--blue-deep); margin-bottom: 8px; line-height: 1.3;
+  }
+
+  .card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin-bottom: 18px; }
+
+  .card-meta {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    font-size: 0.78rem; color: var(--muted); margin-bottom: 20px;
+  }
+  .card-meta span { display: flex; align-items: center; gap: 5px; }
+
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 18px; border-top: 1px solid var(--border);
+  }
+
+  .card-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem; font-weight: 800; color: var(--blue-deep);
+  }
+  .card-price span { font-size: 0.75rem; color: var(--muted); font-weight: 400; font-family: 'DM Sans', sans-serif; }
+
+  .btn-card {
+    background: var(--blue-deep); color: #fff;
+    padding: 9px 20px; border-radius: 50px;
+    font-size: 0.82rem; font-weight: 600; text-decoration: none;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .btn-card:hover { background: var(--blue-mid); }
+
+  /* ── SERVICES ── */
+  #services { background: var(--off-white); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .service-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s, box-shadow 0.25s;
+    text-align: center;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(26,58,107,0.14); }
+
+  .service-icon {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue-mid), var(--blue-light));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; margin: 0 auto 20px;
+  }
+
+  .service-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--blue-deep); margin-bottom: 10px;
+  }
+
+  .service-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.65; }
+
+  .service-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    justify-content: center; margin-top: 16px;
+  }
+  .tag {
+    background: var(--blue-pale); color: var(--blue-mid);
+    font-size: 0.7rem; font-weight: 600; padding: 3px 10px;
+    border-radius: 50px; letter-spacing: 0.05em;
+  }
+
+  /* ── PROCESS ── */
+  #processus { background: var(--white); }
+
+  .process-steps {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px; position: relative;
+  }
+
+  .step {
+    padding: 28px 24px; border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--off-white);
+    text-align: center;
+    position: relative;
+  }
+
+  .step-num {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+    border-radius: 50%; color: #fff;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+  }
+
+  .step h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--blue-deep); margin-bottom: 8px; }
+  .step p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+
+
+  /* ── CONTACT ── */
+  #contact { background: var(--off-white); }
+
+  .contact-wrap {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: start;
+  }
+
+  .contact-info h3 { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--blue-deep); margin-bottom: 14px; }
+  .contact-info p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 28px; }
+
+  .contact-item {
+    display: flex; gap: 14px; align-items: flex-start; margin-bottom: 18px;
+  }
+  .contact-item-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--blue-pale); color: var(--blue-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-item-text strong { display: block; font-size: 0.82rem; font-weight: 700; color: var(--blue-deep); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+  .contact-item-text span { font-size: 0.88rem; color: var(--muted); }
+
+  .contact-form {
+    background: var(--white); border-radius: var(--radius);
+    padding: 36px; border: 1px solid var(--border); box-shadow: var(--shadow);
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--blue-deep); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.07em; }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; padding: 12px 16px;
+    border: 1.5px solid var(--border); border-radius: 10px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    color: var(--text); background: var(--off-white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--blue-mid);
+    box-shadow: 0 0 0 3px rgba(39,86,168,0.1);
+    background: #fff;
+  }
+  .form-group textarea { height: 120px; resize: vertical; }
+
+  .btn-submit {
+    width: 100%; padding: 14px;
+    background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+    color: #fff; border: none; border-radius: 10px;
+    font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,58,107,0.3); }
+  .btn-submit:active { transform: translateY(0); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--blue-deep);
+    padding: 48px 5% 24px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .footer-top {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer-brand .nav-logo { margin-bottom: 14px; }
+  .footer-brand p { font-size: 0.85rem; line-height: 1.7; }
+
+  .footer-col h4 { font-family: 'Syne', sans-serif; color: #fff; font-size: 0.9rem; font-weight: 700; margin-bottom: 14px; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 8px; }
+  .footer-col ul li a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--accent); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: gap;
+    font-size: 0.8rem;
+  }
+  .footer-bottom a { color: var(--accent); text-decoration: none; }
+
+  /* ── HIDDEN CARDS (tab filter) ── */
+  .card[data-cat].hidden { display: none; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .nav-mobile { display: none; position: fixed; top: 70px; left: 0; right: 0; background: #fff; z-index: 99; flex-direction: column; gap: 0; border-bottom: 1px solid var(--border); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { padding: 16px 5%; font-size: 1rem; font-weight: 500; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border); display: block; }
+    .nav-mobile .nav-cta { display: block; background: var(--blue-mid); color: #fff; text-align: center; border-radius: 0; }
+
+    .contact-wrap { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 24px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    section { padding: 60px 5%; }
+    .hero { padding: 60px 5%; min-height: auto; }
+  }
+
+  @media (max-width: 480px) {
+    .formations-grid, .services-grid, .temoignages-grid, .process-steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#1a3a6b,#2756a8);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="10" width="4" height="12" fill="white" opacity="0.7"/><rect x="8" y="6" width="4" height="16" fill="white"/><rect x="14" y="2" width="4" height="20" fill="white" opacity="0.85"/><path d="M3 16 L20 5" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M18 3 L21 6 L18 6" fill="white"/></svg>
+    </div>
+    <div>
+      <div class="nav-logo-text">DATAVISIONTECH</div>
+      <div class="nav-logo-sub">Mbengue Expertise</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#formations">Formations</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#processus">Notre méthode</a></li>
+
+  </ul>
+  <a href="#contact" class="nav-cta">Nous contacter</a>
+  <div class="hamburger" onclick="toggleMenu()" id="ham">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="#formations" onclick="closeMenu()">Formations</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#processus" onclick="closeMenu()">Notre méthode</a>
+
+  <a href="#contact" class="nav-cta" onclick="closeMenu()">Nous contacter</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Formations · Projets Data · Développement · Solutions IT</div>
+    <h1>Maîtrisez la <span>Data</span> &<br>transformez vos idées<br>en solutions</h1>
+    <p>DataVisionTech vous accompagne dans la montée en compétences data, le développement d'applications et la mise en place de solutions informatiques sur mesure adaptées à vos besoins.</p>
+    <div class="hero-btns">
+      <a href="#formations" class="btn-primary">Voir les formations</a>
+      <a href="#services" class="btn-outline">Nos services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">20+</div><div class="stat-label">Formations</div></div>
+      <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Apprenants formés</div></div>
+      <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Projets réalisés</div></div>
+      <div class="stat"><div class="stat-num">5★</div><div class="stat-label">Satisfaction</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATIONS -->
+<section id="formations">
+  <div class="section-header">
+    <span class="section-label">Catalogue de formations</span>
+    <h2 class="section-title">Formations Data & Tech</h2>
+    <p class="section-sub">Des parcours structurés pour tous les niveaux, de l'initiation à l'expertise en data science, BI et développement.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="filterCat('all', this)">Tout voir</button>
+    <button class="tab-btn" onclick="filterCat('data', this)">Data Science & IA</button>
+    <button class="tab-btn" onclick="filterCat('bi', this)">Business Intelligence</button>
+    <button class="tab-btn" onclick="filterCat('dev', this)">Développement</button>
+    <button class="tab-btn" onclick="filterCat('db', this)">Bases de données</button>
+  </div>
+
+  <div class="formations-grid">
+
+    <!-- DATA SCIENCE & IA -->
+    <div class="card reveal" data-cat="data">
+      <div class="card-icon">🐍</div>
+      <span class="card-level level-debutant">Débutant</span>
+      <h3>Python pour la Data Science</h3>
+      <p>Fondamentaux de Python, manipulation de données avec Pandas & NumPy, visualisation avec Matplotlib et Seaborn.</p>
+      <div class="card-meta">
+        <span>⏱ 40h</span><span>📅 Présentiel / En ligne</span><span>👥 Groupe / Individuel</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">Nous contacter <span>/ tarif</span></div>
+        <a href="#contact" class="btn-card">S'inscrire</a>
+      </div>
+    </div>
+
+    <div class="card reveal" data-cat="data">
+      <div class="card-icon">🤖</div>
+      <span class="card-level level-intermediaire">Intermédiaire</span>
+      <h3>Machine Learning avec Scikit-Learn</h3>
+      <p>Algorithmes de classification, régression, clustering. Évaluation de modèles, pipelines et bonnes pratiques ML.</p>
+      <div class="card-meta">
+        <span>⏱ 50h</span><span>📅 En ligne</span><span>👥 Groupe</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">Nous contacter <span>/ tarif</span></div>
+        <a href="#contact" class="btn-card">S'inscrire</a>
+      </div>
+    </div>
+
+    <div class="card reveal" data-cat="data">
+      <div class="card-icon">🧠</div>
+      <span class="card-level level-avance">Avancé</span>
+      <h3>Deep Learning & Réseaux de Neurones</h3>
+      <p>TensorFlow & Keras, CNN, RNN, NLP, transfer learning. Projets pratiques de computer vision et traitement du texte.</p>
+      <div class="card-meta">
+        <span>⏱ 60h</span><span>📅 En ligne</span><span>👥 Individuel</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">Nous contacter <span>/ tarif</span></div>
+        <a href="#contact" class="btn-card">S'inscrire</a>
+      </div>
+    </div>
+
+    <div class="card reveal" data-cat="data">
+      <div class="card-icon">📊</div>
+      <span class="card-level level-debutant">Débutant</span>
+      <h3>Analyse de données avec Excel & R</h3>
+      <p>Statistiques descriptives, tableaux croisés, visualisations avancées. Introduction à R pour l'analyse statistique.</p>
+      <div class="card-meta">
+        <span>⏱ 30h</span><span>📅 Présentiel</span><span>👥 Groupe</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">Nous contacter <span>/ tarif</span></div>
+        <a href="#contact" class="btn-card">S'inscrire</a>
+      </div>
+    </div>
+
+    <!-- BUSINESS INTELLIGENCE -->
+    <div class="card reveal" data-cat="bi">
+      <div class="card-icon">📈</div>
+      <span class="card-level level-debutant">Débutant</span>
+      <h3>Power BI – Initiation</h3>
+      <p>Connexion aux sources de données, création de rapports interactifs, tableaux de bord et partage via Power BI Service.</p>
+      <div class="card-meta">
+        <span>⏱ 24h</span><span>📅 Présentiel / En ligne</span><span>👥 Groupe</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">Nous contacter <span>/ tarif</span></div>
+        <a href="#contact" class="btn-card">S'inscrire</a>
+      </div>
+    </div>
+
+    <div class="card reveal" data-cat="bi">
+      <div class="card-icon">⚡</div>
+      <span class="card-level level-intermediaire">Intermédiaire</span>
+      <h3>Power BI & DAX Avancé</h3>
+      <p>Formules DAX complexes, modélisation de données, optimisation des performances, sécurité au niveau des lignes (RLS).</p>
+      <div class="card-meta">
+        <span>⏱ 35h</span><span>📅 En ligne</span><span>👥 Individuel / Groupe</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">Nous contacter <span>/ tarif</span></div>
+        <a href="#contact" class="btn-card">S'inscrire</a>
+      </div>
+    </div>
+
+    <div class="card reveal" data-cat="bi">
+      <div class="card-icon">📉</div>
+      <span class="card-level level-debutant">Débutant</span>
+      <h3>Tableau – Visualisation de données</h3>
+      <p>Création de vues, filtres dynamiques, calculs, story points. Connexion aux bases et publication sur Tableau Server/Cloud.</p>
+      <div class="card-meta">
+        <span>⏱ 28h</span><span>📅 Présentiel</span><span>👥 Groupe</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">Nous contacter <span>/ tarif</span></div>
+        <a href="#contact" class="btn-card">S'inscrire</a>
+      </div>
+    </div>
+
+    <div class="card reveal" data-cat="bi">
+      <div class="card-icon">🔄</div>
+      <span class="card-level level-intermediaire">Intermédiaire</span>
+      <h3>ETL & Intégration de données</h3>
+      <p>Conception de pipelines ETL avec Python, SQL et outils modernes (dbt, Apache Airflow). Automatisation des flux de données.</p>
+      <div class="card-meta">
+        <span>⏱ 40h</span><span>📅 En ligne</span><span>👥 Individuel</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">Nous contacter <span>/ tarif</span></div>
+        <a href="#contact" class="btn-card">S'inscrire</a>
+      </div>
+    </div>
+
+    <!-- DÉVELOPPEMENT -->
+    <div class="card reveal" data-cat="dev">
+      <div class="card-icon">🌐</div>
+      <span class="card-level level-debutant">Débutant</span>
+      <h3>Développement Web Full-Stack</h3>
+      <p>HTML, CSS, JavaScript, React.js en frontend. Node.js et Express en backend. Déploiement et bonnes pratiques modernes.</p>
+      <div class="card-meta">
+        <span>⏱ 80h</span><span>📅 Présentiel / En ligne</span><span>👥 Groupe</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">Nous contacter <span>/ tarif</span></div>
+        <a href="#contact" class="btn-card">S'inscrire</a>
+      </div>
+    </div>
+
+    <div class="card reveal" data-cat="dev">
+      <div class="card-icon">📱</div>
+      <span class="card-level level-intermediaire">Intermédiaire</span>
+      <h3>Développement Mobile React Native</h3>
+      <p>Création d'applications mobiles cross-platform iOS/Android. Navigation, état global, API REST, publication sur stores.</p>
+      <div class="card-meta">
+        <span>⏱ 60h</span><span>📅 En ligne</span><span>👥 Individuel / Groupe</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">Nous contacter <span>/ tarif</span></div>
+        <a href="#contact" class="btn-card">S'inscrire</a>
+      </div>
+    </div>
+
+    <div class="card reveal" data-cat="dev">
+      <div class="card-icon">🔗</div>
+      <span class="card-level level-intermediaire">Intermédiaire</span>
+      <h3>API REST avec Python & FastAPI</h3>
+      <p>Conception et développement d'APIs REST robustes, documentation Swagger, authentification JWT, tests et déploiement.</p>
+      <div class="card-meta">
+        <span>⏱ 32h</span><span>📅 En ligne</span><span>👥 Individuel</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">Nous contacter <span>/ tarif</span></div>
+        <a href="#contact" class="btn-card">S'inscrire</a>
+      </div>
+    </div>
+
+    <!-- BASES DE DONNÉES -->
+    <div class="card reveal" data-cat="db">
+      <div class="card-icon">🗄️</div>
+      <span class="card-level level-debutant">Débutant</span>
+      <h3>SQL – Du débutant à l'expert</h3>
+      <p>Requêtes fondamentales, jointures, agrégations, sous-requêtes, fonctions fenêtrées. Optimisation et indexation des requêtes.</p>
+      <div class="card-meta">
+        <span>⏱ 35h</span><span>📅 Présentiel / En ligne</span><span>👥 Groupe</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">Nous contacter <span>/ tarif</span></div>
+        <a href="#contact" class="btn-card">S'inscrire</a>
+      </div>
+    </div>
+
+    <div class="card reveal" data-cat="db">
+      <div class="card-icon">☁️</div>
+      <span class="card-level level-avance">Avancé</span>
+      <h3>Data Engineering & Cloud</h3>
+      <p>Architecture data lake, data warehouse sur AWS/Azure/GCP. Big Data avec Spark, orchestration et monitoring de pipelines.</p>
+      <div class="card-meta">
+        <span>⏱ 70h</span><span>📅 En ligne</span><span>👥 Individuel</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">Nous contacter <span>/ tarif</span></div>
+        <a href="#contact" class="btn-card">S'inscrire</a>
+      </div>
+    </div>
+
+    <div class="card reveal" data-cat="db">
+      <div class="card-icon">🍃</div>
+      <span class="card-level level-intermediaire">Intermédiaire</span>
+      <h3>NoSQL & MongoDB</h3>
+      <p>Modélisation de données non-relationnelles, agrégations, indexation, réplication. Intégration avec Python et Node.js.</p>
+      <div class="card-meta">
+        <span>⏱ 28h</span><span>📅 En ligne</span><span>👥 Groupe / Individuel</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-price">Nous contacter <span>/ tarif</span></div>
+        <a href="#contact" class="btn-card">S'inscrire</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header center">
+    <span class="section-label">Ce que nous faisons</span>
+    <h2 class="section-title">Nos services professionnels</h2>
+    <p class="section-sub">Au-delà de la formation, DataVisionTech conçoit et réalise des solutions data et informatiques sur mesure pour votre organisation.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">📊</div>
+      <h3>Projets Data & Analyse</h3>
+      <p>Collecte, nettoyage, analyse et visualisation de vos données. Mise en place de tableaux de bord décisionnels et reporting automatisé.</p>
+      <div class="service-tags">
+        <span class="tag">Python</span><span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">SQL</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">🌐</div>
+      <h3>Développement Web</h3>
+      <p>Conception et développement de sites web et applications web sur mesure, de la maquette au déploiement, avec des technologies modernes.</p>
+      <div class="service-tags">
+        <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Django</span><span class="tag">Laravel</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">📱</div>
+      <h3>Applications Mobiles</h3>
+      <p>Développement d'applications mobiles iOS et Android, performantes et ergonomiques, adaptées à votre secteur d'activité.</p>
+      <div class="service-tags">
+        <span class="tag">React Native</span><span class="tag">Flutter</span><span class="tag">Firebase</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">🤖</div>
+      <h3>Intelligence Artificielle</h3>
+      <p>Intégration de l'IA dans vos processus métier : modèles prédictifs, NLP, computer vision, chatbots intelligents.</p>
+      <div class="service-tags">
+        <span class="tag">ML</span><span class="tag">TensorFlow</span><span class="tag">OpenAI</span><span class="tag">LLM</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">💻</div>
+      <h3>Solutions Informatiques</h3>
+      <p>Audit, conseil et mise en place de systèmes d'information adaptés à vos besoins. Intégration, automatisation et maintenance.</p>
+      <div class="service-tags">
+        <span class="tag">ERP</span><span class="tag">CRM</span><span class="tag">Automatisation</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">🎓</div>
+      <h3>Formation en entreprise</h3>
+      <p>Programmes de formation sur mesure pour vos équipes, en présentiel ou à distance. Contenu adapté à votre secteur et vos outils.</p>
+      <div class="service-tags">
+        <span class="tag">Sur mesure</span><span class="tag">Certifiant</span><span class="tag">Intra/Inter</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSUS -->
+<section id="processus">
+  <div class="section-header center">
+    <span class="section-label">Notre méthode</span>
+    <h2 class="section-title">Comment nous travaillons</h2>
+    <p class="section-sub">Un accompagnement structuré de bout en bout pour garantir la réussite de votre projet ou de votre parcours de formation.</p>
+  </div>
+
+  <div class="process-steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <h4>Analyse des besoins</h4>
+      <p>Échange approfondi pour comprendre vos objectifs, contraintes et contexte métier avant toute action.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <h4>Proposition sur mesure</h4>
+      <p>Conception d'un plan formation ou d'une architecture solution adapté précisément à votre situation.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <h4>Réalisation & accompagnement</h4>
+      <p>Exécution par des experts avec un suivi régulier, des livrables clairs et une communication transparente.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <h4>Livraison & suivi</h4>
+      <p>Déploiement, transfert de compétences, documentation et support post-projet pour garantir votre autonomie.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-label">Nous contacter</span>
+    <h2 class="section-title">Parlons de votre projet</h2>
+    <p class="section-sub">Formation, projet data ou développement — contactez-nous pour un échange gratuit et sans engagement.</p>
+  </div>
+
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <h3>DataVisionTech<br>Mbengue Expertise</h3>
+      <p>Nous sommes disponibles pour répondre à vos questions et élaborer ensemble une solution adaptée à vos besoins.</p>
+
+      <div class="contact-item">
+        <div class="contact-item-icon">📍</div>
+        <div class="contact-item-text">
+          <strong>Adresse</strong>
+          <span>Dakar, Sénégal</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">📞</div>
+        <div class="contact-item-text">
+          <strong>Téléphone / WhatsApp</strong>
+          <span>+221 77 842 56 01</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">✉️</div>
+        <div class="contact-item-text">
+          <strong>Email</strong>
+          <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="32515d5c465351467256534653445b415b5d5c4657515a1c415c">ndefatou.mbengue@gmail.com</a></span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">🕐</div>
+        <div class="contact-item-text">
+          <strong>Disponibilité</strong>
+          <span>Lun–Sam : 8h00 – 18h00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div id="form-fields">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Prénom *</label>
+            <input type="text" id="f-prenom" placeholder="Votre prénom" required>
+          </div>
+          <div class="form-group">
+            <label>Nom *</label>
+            <input type="text" id="f-nom" placeholder="Votre nom" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" id="f-email" placeholder="ndefatou.mbengue@gmail.com<" required>
+        </div>
+        <div class="form-group">
+          <label>Téléphone</label>
+          <input type="tel" id="f-tel" placeholder="+221 77 842 56 01">
+        </div>
+        <div class="form-group">
+          <label>Type de demande *</label>
+          <select id="f-type" required>
+            <option value="">Sélectionnez...</option>
+            <option>Formation individuelle</option>
+            <option>Formation en entreprise</option>
+            <option>Projet Data / BI</option>
+            <option>Développement Web</option>
+            <option>Application Mobile</option>
+            <option>Solution informatique sur mesure</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="f-message" placeholder="Décrivez votre besoin ou votre projet..."></textarea>
+        </div>
+        <div id="form-error" style="display:none;color:#dc2626;font-size:0.83rem;margin-bottom:12px;padding:10px 14px;background:#fee2e2;border-radius:8px;"></div>
+        <button class="btn-submit" id="btn-submit" onclick="handleSubmit()">Envoyer ma demande →</button>
+      </div>
+
+      <div id="form-success" style="display:none;text-align:center;padding:40px 20px;">
+        <div style="font-size:3rem;margin-bottom:16px;">✅</div>
+        <h3 style="font-family:'Syne',sans-serif;color:var(--blue-deep);font-size:1.3rem;margin-bottom:10px;">Demande envoyée !</h3>
+        <p style="color:var(--muted);font-size:0.9rem;line-height:1.6;">Nous avons bien reçu votre message et nous vous répondrons dans les plus brefs délais.</p>
+        <button onclick="resetForm()" style="margin-top:20px;background:var(--blue-pale);color:var(--blue-mid);border:none;padding:10px 24px;border-radius:50px;font-size:0.85rem;font-weight:600;cursor:pointer;">Nouvelle demande</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">
+        <div style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="10" width="4" height="12" fill="white" opacity="0.7"/><rect x="8" y="6" width="4" height="16" fill="white"/><rect x="14" y="2" width="4" height="20" fill="white" opacity="0.85"/><path d="M3 16 L20 5" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M18 3 L21 6 L18 6" fill="white"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:#fff;">DATAVISIONTECH</div>
+          <div style="font-size:0.6rem;color:rgba(255,255,255,0.5);letter-spacing:0.12em;text-transform:uppercase;">Mbengue Expertise</div>
+        </div>
+      </a>
+      <p style="margin-top:12px;">Votre partenaire en formation data, développement d'applications et solutions informatiques sur mesure au Sénégal et en Afrique.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Formations</h4>
+      <ul>
+        <li><a href="#formations">Python & Data Science</a></li>
+        <li><a href="#formations">Machine Learning</a></li>
+        <li><a href="#formations">Power BI</a></li>
+        <li><a href="#formations">SQL & Bases de données</a></li>
+        <li><a href="#formations">Développement Web</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Projets Data</a></li>
+        <li><a href="#services">Développement Web</a></li>
+        <li><a href="#services">Applications Mobiles</a></li>
+        <li><a href="#services">Intelligence Artificielle</a></li>
+        <li><a href="#services">Solutions IT</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#contact">Nous écrire</a></li>
+        <li><a href="#">WhatsApp</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 DataVisionTech – Mbengue Expertise. Tous droits réservés.</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Tab filter
+  function filterCat(cat, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.card[data-cat]').forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.transitionDelay = (i * 0.05) + 's';
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('navMobile').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('navMobile').classList.remove('open');
+  }
+
+  // ── GOOGLE SHEETS INTEGRATION ──
+  // 👇 Collez ici l'URL de votre Google Apps Script Web App
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyAMWGPYLn_Ot0vjHE8FTNyOqQGymnlhA58bYBhCvYnDyPxNAT3WQVyO_Y8-zhZ18yi/exec';
+
+  async function handleSubmit() {
+    const prenom  = document.getElementById('f-prenom').value.trim();
+    const nom     = document.getElementById('f-nom').value.trim();
+    const email   = document.getElementById('f-email').value.trim();
+    const tel     = document.getElementById('f-tel').value.trim();
+    const type    = document.getElementById('f-type').value;
+    const message = document.getElementById('f-message').value.trim();
+    const errEl   = document.getElementById('form-error');
+    const btn     = document.getElementById('btn-submit');
+
+    // Validation
+    if (!prenom || !nom || !email || !type) {
+      errEl.textContent = 'Veuillez remplir tous les champs obligatoires (*)';
+      errEl.style.display = 'block';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errEl.textContent = 'Adresse email invalide.';
+      errEl.style.display = 'block';
+      return;
+    }
+    errEl.style.display = 'none';
+
+    // Loading state
+    btn.textContent = '⏳ Envoi en cours...';
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+
+    const data = {
+      prenom, nom, email, telephone: tel,
+      type_demande: type, message,
+      date: new Date().toLocaleString('fr-FR', { timeZone: 'Africa/Dakar' })
+    };
+
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      // no-cors = réponse opaque, on suppose le succès
+      document.getElementById('form-fields').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } catch (err) {
+      errEl.textContent = 'Erreur réseau. Veuillez réessayer ou nous contacter directement.';
+      errEl.style.display = 'block';
+      btn.textContent = 'Envoyer ma demande →';
+      btn.disabled = false;
+      btn.style.opacity = '1';
+    }
+  }
+
+  function resetForm() {
+    ['f-prenom','f-nom','f-email','f-tel','f-message'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('f-type').value = '';
+    document.getElementById('form-error').style.display = 'none';
+    const btn = document.getElementById('btn-submit');
+    btn.textContent = 'Envoyer ma demande →';
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    document.getElementById('form-fields').style.display = 'block';
+    document.getElementById('form-success').style.display = 'none';
+  }
+
+  // Smooth scroll offset for sticky nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 75;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
